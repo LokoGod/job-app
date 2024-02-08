@@ -8,15 +8,28 @@ import {
   CardContent,
   CardDescription,
 } from "@/components/ui/card";
+import { DataTable } from "@/components/tables/jobTableData";
+import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
 
-export default function Home() {
+async function getJobData():Promise<JobColumnType[]> {
+  const response = await fetch("https://fakestoreapi.com/products", { next: { revalidate: 3600 } });
+
+  if (!response.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return response.json()
+}
+
+
+export default async function Home() {
+  const jobData = await getJobData();
   return (
     <main>
       <Tabs defaultValue="dash">
         <Card className="w-fit mx-auto my-2">
           <TabsList>
             <TabsTrigger value="dash">Dashboard</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="job">Job Listing</TabsTrigger>
           </TabsList>
         </Card>
 
@@ -26,8 +39,8 @@ export default function Home() {
           <LineSalesChart />
         </TabsContent>
 
-        <TabsContent value="analytics">
-          <h1>Hello, there!</h1>
+        <TabsContent value="job">
+          <DataTable columns={jobColumn} data={jobData} />
         </TabsContent>
       </Tabs>
     </main>
