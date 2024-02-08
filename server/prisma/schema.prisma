@@ -11,6 +11,31 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   name String
+}
+
+model JobList {
+  id             Int      @id @default(autoincrement())
+  jobId          String
+  jobError       String
+  jobDescription String
+  status         String
+  createdDate    DateTime
+}
+
+// job and device one-one
+// one Job can only have one device, one unique device can only have one job
+model Device {
+  id       Int    @id @default(autoincrement())
+  category String
+  model    String
+}
+
+model Customer {
+  id        Int     @id @default(autoincrement())
+  name      String
+  phoneNum  Int     @unique
+  phoneNum2 Int?
+  email     String?
 }
