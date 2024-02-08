@@ -3,10 +3,6 @@ import LineSalesChart from "@/components/visualizations/LineSalesChart";
 import HomeCardData from "@/components/visualizations/HomeCardData";
 import {
   Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
 } from "@/components/ui/card";
 import { DataTable } from "@/components/tables/jobTableData";
 import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
@@ -26,7 +22,7 @@ export default async function Home() {
   return (
     <main>
       <Tabs defaultValue="dash">
-        <Card className="w-fit mx-auto my-2">
+        <Card className="w-fit mx-auto mt-2 mb-10">
           <TabsList>
             <TabsTrigger value="dash">Dashboard</TabsTrigger>
             <TabsTrigger value="job">Job Listing</TabsTrigger>
