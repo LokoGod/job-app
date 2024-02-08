@@ -15,27 +15,43 @@ model User {
   name String
 }
 
-model JobList {
+model Job {
   id             Int      @id @default(autoincrement())
   jobId          String
   jobError       String
   jobDescription String
   status         String
   createdDate    DateTime
+  device         Device   @relation(fields: [deviceId], references: [id])
+  deviceId       Int      @unique
+  customer       Customer @relation(fields: [customerId], references: [id])
+  customerId     Int
 }
 
 // job and device one-one
 // one Job can only have one device, one unique device can only have one job
 model Device {
-  id       Int    @id @default(autoincrement())
+  id               Int              @id @default(autoincrement())
+  model            String
+  category         DeviceCategories @relation(fields: [deviceCategoryId], references: [id])
+  deviceCategoryId Int
+  JobList          Job?
+  customer         Customer         @relation(fields: [customerId], references: [id])
+  customerId       Int
+}
+
+model DeviceCategories {
+  id       Int      @id @default(autoincrement())
   category String
-  model    String
+  device   Device[]
 }
 
 model Customer {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  phoneNum  Int     @unique
+  phoneNum  Int      @unique
   phoneNum2 Int?
   email     String?
+  Job       Job[]
+  Device    Device[]
 }
