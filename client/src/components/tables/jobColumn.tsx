@@ -34,7 +34,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
     accessorKey: "title",
 
     header: ({ column }) => {
-      return <div className="text-blue-600">Title</div>;
+      return <div>Title</div>;
     },
     cell: ({ row }) => {
       return (
