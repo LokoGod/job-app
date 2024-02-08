@@ -21,7 +21,7 @@ const HomeCardData = () => {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 my-5 mx-10">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+          <CardTitle className="text-sm font-medium">Total Jobs</CardTitle>
           <LuDollarSign />
         </CardHeader>
         <CardContent>
@@ -35,7 +35,7 @@ const HomeCardData = () => {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
+          <CardTitle className="text-sm font-medium">Urgent Jobs</CardTitle>
           <TbUsers />
         </CardHeader>
         <CardContent>
@@ -49,7 +49,7 @@ const HomeCardData = () => {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Sales</CardTitle>
+          <CardTitle className="text-sm font-medium">Pending Jobs</CardTitle>
           <HiOutlineWindow />
         </CardHeader>
         <CardContent>
@@ -62,7 +62,7 @@ const HomeCardData = () => {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+          <CardTitle className="text-sm font-medium">Completed Jobs</CardTitle>
           <PiPulseDuotone />
         </CardHeader>
         <CardContent>
