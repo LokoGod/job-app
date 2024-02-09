@@ -21,7 +21,7 @@ export default async function Home() {
   const jobData = await getJobData();
   return (
     <main>
-      <Tabs defaultValue="dash">
+      <Tabs defaultValue="job">
         <Card className="w-fit mx-auto mt-2 mb-10">
           <TabsList>
             <TabsTrigger value="dash">Dashboard</TabsTrigger>
