@@ -20,7 +20,7 @@ model Job {
   jobId          String
   jobError       String
   jobDescription String
-  status         String
+  status         String   @default("pending")
   createdDate    DateTime @default(now())
   device         Device   @relation(fields: [deviceId], references: [id])
   deviceId       Int      @unique
@@ -48,9 +48,9 @@ model DeviceCategories {
 
 model Customer {
   id        Int      @id @default(autoincrement())
-  name      String
-  phoneNum  Int      @unique
-  phoneNum2 Int?
+  cusName   String
+  phoneNum  BigInt      @unique
+  phoneNum2 BigInt?
   email     String?
   Job       Job[]
   Device    Device[]

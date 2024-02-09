@@ -2,7 +2,8 @@ import jobRepo from "../repositories/jobRepo";
 
 const getAllJobListings = async (req: any, res: any) => {
   try {
-    return await res.status(200).json(jobRepo.getAllJobListings());
+    const job = await jobRepo.getAllJobListings();
+    res.status(200).json({ job });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
@@ -16,25 +17,30 @@ const createJob = async (req: any, res: any) => {
     jobDescription,
     status,
     createdDate,
-    deviceId,
-    customerId,
+    model,
+    category,
+    cusName,
+    phoneNum,
+    phoneNum2,
+    email,
   } = req.body;
   try {
-    return await res
-      .status(200)
-      .json(
-        jobRepo.createJob(
-          jobId,
-          jobError,
-          jobDescription,
-          status,
-          createdDate,
-          deviceId,
-          customerId
-        )
-      );
+    const job = await jobRepo.createJob(
+      jobId,
+      jobError,
+      jobDescription,
+      status,
+      createdDate,
+      model,
+      category,
+      cusName,
+      phoneNum,
+      phoneNum2,
+      email
+    );
+    res.status(201).json({ job });
   } catch (error) {
-    console.error();
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
