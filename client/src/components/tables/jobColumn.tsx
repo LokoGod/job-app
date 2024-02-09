@@ -21,7 +21,7 @@ import { LuArrowUpDown } from "react-icons/lu";
 // You can use a Zod schema here if you want.
 export type JobColumnType = {
   id: string;
-  title: string;
+  jobError: string;
   price: number;
   description: string,
   categoryId: number;
@@ -31,7 +31,7 @@ export type JobColumnType = {
 // Defining the clolumns
 export const jobColumn: ColumnDef<JobColumnType>[] = [
   {
-    accessorKey: "title",
+    accessorKey: "jobError",
 
     header: ({ column }) => {
       return <div>Title</div>;
@@ -39,7 +39,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
     cell: ({ row }) => {
       return (
         <a href="#" className="font-medium hover:underline">
-          {row.getValue("title")}
+          {row.getValue("jobError")}
         </a>
       );
     },

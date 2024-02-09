@@ -8,7 +8,7 @@ import { DataTable } from "@/components/tables/jobTableData";
 import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
 
 async function getJobData():Promise<JobColumnType[]> {
-  const response = await fetch("https://fakestoreapi.com/products", { next: { revalidate: 3600 } });
+  const response = await fetch("http://localhost:5000/api/v1/job", { next: { revalidate: 3600 } });
 
   if (!response.ok) {
     throw new Error("failed to fetch data");
