@@ -21,7 +21,7 @@ model Job {
   jobError       String
   jobDescription String
   status         String
-  createdDate    DateTime
+  createdDate    DateTime @default(now())
   device         Device   @relation(fields: [deviceId], references: [id])
   deviceId       Int      @unique
   customer       Customer @relation(fields: [customerId], references: [id])

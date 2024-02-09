@@ -1,19 +1,10 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE `User` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
 
-  - You are about to drop the column `category` on the `device` table. All the data in the column will be lost.
-  - You are about to drop the `joblist` table. If the table is not empty, all the data it contains will be lost.
-  - Added the required column `customerId` to the `Device` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `deviceCategoryId` to the `Device` table without a default value. This is not possible if the table is not empty.
-
-*/
--- AlterTable
-ALTER TABLE `device` DROP COLUMN `category`,
-    ADD COLUMN `customerId` INTEGER NOT NULL,
-    ADD COLUMN `deviceCategoryId` INTEGER NOT NULL;
-
--- DropTable
-DROP TABLE `joblist`;
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Job` (
@@ -22,7 +13,7 @@ CREATE TABLE `Job` (
     `jobError` VARCHAR(191) NOT NULL,
     `jobDescription` VARCHAR(191) NOT NULL,
     `status` VARCHAR(191) NOT NULL,
-    `createdDate` DATETIME(3) NOT NULL,
+    `createdDate` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `deviceId` INTEGER NOT NULL,
     `customerId` INTEGER NOT NULL,
 
@@ -31,10 +22,32 @@ CREATE TABLE `Job` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `Device` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `model` VARCHAR(191) NOT NULL,
+    `deviceCategoryId` INTEGER NOT NULL,
+    `customerId` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `DeviceCategories` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `category` VARCHAR(191) NOT NULL,
 
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Customer` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `phoneNum` INTEGER NOT NULL,
+    `phoneNum2` INTEGER NULL,
+    `email` VARCHAR(191) NULL,
+
+    UNIQUE INDEX `Customer_phoneNum_key`(`phoneNum`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
