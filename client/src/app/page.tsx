@@ -8,21 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { DataTable } from "@/components/tables/jobTableData";
 import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
 import HomeTable from "@/components/visualizations/HomeTable";
-import HomeRadialBarChart from "@/components/visualizations/HomeBarChart";
 import HomeBarChart from "@/components/visualizations/HomeBarChart";
-import HomeTable2 from "@/components/visualizations/HomeTable02";
 
 async function getJobData(): Promise<JobColumnType[]> {
   const response = await fetch("http://localhost:5000/api/v1/job", {
