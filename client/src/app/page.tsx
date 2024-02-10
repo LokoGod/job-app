@@ -77,11 +77,13 @@ export default async function Home() {
         <TabsContent value="job">
           <div className="flex justify-end mr-10">
             <Tooltip>
-              <TooltipTrigger asChild>
-                <Button className="">
-                  <IoMdAddCircleOutline size={20} />
-                </Button>
-              </TooltipTrigger>
+              <a href="/createJob">
+                <TooltipTrigger asChild>
+                  <Button className="">
+                    <IoMdAddCircleOutline size={20} />
+                  </Button>
+                </TooltipTrigger>
+              </a>
               <TooltipContent className="mb-1">
                 <p>Create Job</p>
               </TooltipContent>
