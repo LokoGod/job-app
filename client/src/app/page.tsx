@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/table";
 import { DataTable } from "@/components/tables/jobTableData";
 import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
+import HomeTable from "@/components/visualizations/HomeTable";
+import HomeRadialBarChart from "@/components/visualizations/HomeRadialBarChart";
 
 async function getJobData(): Promise<JobColumnType[]> {
   const response = await fetch("http://localhost:5000/api/v1/job", {
@@ -27,7 +29,7 @@ async function getJobData(): Promise<JobColumnType[]> {
 
 export default async function Home() {
   const jobData = await getJobData();
-  const latestJobs = jobData.slice(0, 3)
+
   return (
     <main>
       <Tabs defaultValue="job">
@@ -41,6 +43,11 @@ export default async function Home() {
         <TabsContent value="dash">
           <HomeCardData />
 
+          <div className="flex">
+            <HomeRadialBarChart />
+            <HomeTable />
+          </div>
+          
           <LineSalesChart />
         </TabsContent>
 
