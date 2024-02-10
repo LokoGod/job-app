@@ -12,6 +12,15 @@ import { DataTable } from "@/components/tables/jobTableData";
 import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
 import HomeTable from "@/components/visualizations/HomeTable";
 import HomeBarChart from "@/components/visualizations/HomeBarChart";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 async function getJobData(): Promise<JobColumnType[]> {
   const response = await fetch("http://localhost:5000/api/v1/job", {
@@ -66,6 +75,19 @@ export default async function Home() {
         </TabsContent>
 
         <TabsContent value="job">
+          <div className="flex justify-end mr-10">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button className="">
+                  <IoMdAddCircleOutline size={20} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent className="mb-1">
+                <p>Create Job</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+
           <DataTable columns={jobColumn} data={jobData} />
         </TabsContent>
       </Tabs>

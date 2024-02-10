@@ -32,7 +32,7 @@ import {
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
-import { DatePickerDemo } from "../../DatePicker";
+// import { DatePickerDemo } from "../../DatePicker";
 
 const formSchema = z.object({
   income_title: z.string().min(2, {
@@ -48,7 +48,7 @@ const formSchema = z.object({
   receving_date: z.date().optional(),
 });
 
-export function AddIncomeForm() {
+export function createJobForm() {
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
