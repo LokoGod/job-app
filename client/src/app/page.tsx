@@ -1,7 +1,13 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LineSalesChart from "@/components/visualizations/LineSalesChart";
 import HomeCardData from "@/components/visualizations/HomeCardData";
-import { Card } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -14,7 +20,9 @@ import {
 import { DataTable } from "@/components/tables/jobTableData";
 import { jobColumn, JobColumnType } from "@/components/tables/jobColumn";
 import HomeTable from "@/components/visualizations/HomeTable";
-import HomeRadialBarChart from "@/components/visualizations/HomeRadialBarChart";
+import HomeRadialBarChart from "@/components/visualizations/HomeBarChart";
+import HomeBarChart from "@/components/visualizations/HomeBarChart";
+import HomeTable2 from "@/components/visualizations/HomeTable02";
 
 async function getJobData(): Promise<JobColumnType[]> {
   const response = await fetch("http://localhost:5000/api/v1/job", {
@@ -32,7 +40,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Tabs defaultValue="job">
+      <Tabs defaultValue="dash">
         <Card className="w-fit mx-auto mt-2 mb-10">
           <TabsList>
             <TabsTrigger value="dash">Dashboard</TabsTrigger>
@@ -43,11 +51,28 @@ export default async function Home() {
         <TabsContent value="dash">
           <HomeCardData />
 
-          <div className="flex">
-            <HomeRadialBarChart />
-            <HomeTable />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mx-10 mb-5">
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Overview</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">
+                <HomeBarChart />
+              </CardContent>
+            </Card>
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Recent Jobs</CardTitle>
+                <CardDescription>
+                  You made 265 sales this month.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <HomeTable />
+              </CardContent>
+            </Card>
           </div>
-          
+
           <LineSalesChart />
         </TabsContent>
 
