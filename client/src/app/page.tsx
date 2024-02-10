@@ -41,32 +41,6 @@ export default async function Home() {
         <TabsContent value="dash">
           <HomeCardData />
 
-          <section className="w-[500px] mx-auto my-10">
-            <Table>
-              <TableCaption>A list of your recent invoices.</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[100px]">Invoice</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Method</TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
-                </TableRow>
-              </TableHeader>
-              {latestJobs.map((job, id) => (
-                <TableBody>
-                  <TableRow key={id}>
-                    <TableCell className="font-medium">
-                      {job.jobId}
-                    </TableCell>
-                    <TableCell>{job.status}</TableCell>
-                    <TableCell>{job.jobError}</TableCell>
-                    <TableCell className="text-right">{job.customer.cusName}</TableCell>
-                  </TableRow>
-                </TableBody>
-              ))}
-            </Table>
-          </section>
-
           <LineSalesChart />
         </TabsContent>
 
