@@ -1,7 +1,9 @@
+import { CreateJobForm } from "@/components/forms/CreateJobForm";
+
 export default function page() {
     return (
         <div>
-            <h1>Hello</h1>
+            <CreateJobForm />
         </div>
     )
 };

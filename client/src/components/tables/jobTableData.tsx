@@ -87,28 +87,36 @@ export function DataTable<TData, TValue>({
     },
   });
 
+
+  const handleValueChange = (newValue: any) => {
+    let searchFilter = newValue
+    return searchFilter
+  };
+
   return (
     <div className="mx-10">
       <div className="flex items-center py-4">
+        <div className="mr-5">
+          <Select onValueChange={handleValueChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Filter by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="jobId">Job-No</SelectItem>
+              <SelectItem value="jobError">Error</SelectItem>
+              <SelectItem value="cusName">Customer Name</SelectItem>
+              <SelectItem value="customer.phoneNum">Phone Number</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
         <Input
-          placeholder="Filter JOB Numbber..."
-          value={(table.getColumn("jobId")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter Job-Numbers..."
+          value={handleValueChange(table.getColumn("jobId")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("jobId")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm mr-5"
+          className="max-w-sm"
         />
-
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Theme" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
-          </SelectContent>
-        </Select>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

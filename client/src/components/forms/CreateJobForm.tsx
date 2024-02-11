@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
-import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,31 +30,59 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
+import { toast } from "sonner";
 // import { DatePickerDemo } from "../../DatePicker";
 
 const formSchema = z.object({
-  income_title: z.string().min(2, {
+  jobId: z.string().min(2, {
     message: "Title must be at least 2 characters.",
   }),
-  income_amount: z.coerce.number().gte(10, {
-    message: "Amount must be at least 2 digits.",
+  jobError: z.string().min(2, {
+    message: "Error must be at least 2 characters.",
   }),
-  income_category: z.string({
-    required_error: "Please select a category!",
+  jobDescription: z.string().min(2, {
+    message: "Description must be at least 2 characters.",
   }),
-  recurring: z.boolean().default(false).optional(),
-  receving_date: z.date().optional(),
+  model: z.string().min(2, {
+    message: "Model must be at least 2 characters.",
+  }),
+  category: z.string().min(2, {
+    message: "Category must be at least 2 characters.",
+  }),
+  cusName: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  phoneNum: z.coerce.number().gte(10, {
+    message: "phoneNum must be at least 2 digits.",
+  }),
+  phoneNum2: z.coerce
+    .number()
+    .gte(10, {
+      message: "phoneNum must be at least 2 digits.",
+    })
+    .optional(),
+  email: z
+    .string()
+    .min(2, {
+      message: "email must be at least 2 characters.",
+    })
+    .optional(),
+  // income_category: z.string({
+  //   required_error: "Please select a category!",
+  // }),
+  // recurring: z.boolean().default(false).optional(),
+  // receving_date: z.date().optional(),
 });
 
-export function createJobForm() {
-
+export function CreateJobForm() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      income_title: "",
-      income_category: "",
+      jobId: "",
+      jobError: "",
     },
   });
 
@@ -65,20 +92,21 @@ export function createJobForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/income",
+        "http://localhost:5000/api/v1/job",
         values
       );
       console.log(response);
     } catch (error) {
-      console.error("Create req failed", error);
+      toast.error("Cannot create a job at the moment");
     }
     console.log(values);
   }
 
   return (
-    <div className="">
-      <Card>
+    <div>
+      <Card className="w-[800px] mx-auto">
         <CardHeader>
+          <CardTitle>Job Form</CardTitle>
           <CardDescription>
             Enter the details of the recieved income
           </CardDescription>
@@ -89,10 +117,10 @@ export function createJobForm() {
               <div className="">
                 <FormField
                   control={form.control}
-                  name="income_title"
+                  name="jobId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Title</FormLabel>
+                      <FormLabel>jobId</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Shoping discount surplus"
@@ -110,26 +138,104 @@ export function createJobForm() {
               <div className="">
                 <FormField
                   control={form.control}
-                  name="income_amount"
+                  name="jobError"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Amount</FormLabel>
+                      <FormLabel>jobError</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Rs."
-                          type="number"
-                          {...field}
-                        />
+                        <Input placeholder="jobError" {...field} />
                       </FormControl>
-                      <FormDescription>
-                        Add the amount
-                      </FormDescription>
+                      <FormDescription>Add the jobError</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
               <div className="">
+                <FormField
+                  control={form.control}
+                  name="jobDescription"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>jobDescription</FormLabel>
+                      <FormControl>
+                        <Input placeholder="jobDescription" {...field} />
+                      </FormControl>
+                      <FormDescription>Add the jobDescription</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="">
+                <FormField
+                  control={form.control}
+                  name="model"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>model</FormLabel>
+                      <FormControl>
+                        <Input placeholder="model" {...field} />
+                      </FormControl>
+                      <FormDescription>Add the model</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>category</FormLabel>
+                      <FormControl>
+                        <Input placeholder="category" {...field} />
+                      </FormControl>
+                      <FormDescription>Add the category</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="">
+                <FormField
+                  control={form.control}
+                  name="cusName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>cusName</FormLabel>
+                      <FormControl>
+                        <Input placeholder="cusName" {...field} />
+                      </FormControl>
+                      <FormDescription>Add the cusName</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="">
+                <FormField
+                  control={form.control}
+                  name="phoneNum"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>phoneNum</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="phoneNum"
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>Add the phoneNum</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              {/* <div className="">
                 <FormField
                   control={form.control}
                   name="income_category"
@@ -190,15 +296,13 @@ export function createJobForm() {
                     <FormItem>
                       <FormLabel>Set future date ?</FormLabel>
                       <FormControl className="flex">
-                        <div>
-                          <DatePickerDemo field={field} />
-                        </div>
+                        <div><DatePickerDemo field={field} /></div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </div>
+              </div> */}
 
               <Button type="submit">Add</Button>
             </form>

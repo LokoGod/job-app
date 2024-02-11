@@ -39,7 +39,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Tabs defaultValue="dash">
+      <Tabs defaultValue="job">
         <Card className="w-fit mx-auto mt-2 mb-10">
           <TabsList>
             <TabsTrigger value="dash">Dashboard</TabsTrigger>
