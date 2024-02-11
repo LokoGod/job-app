@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { Toaster, toast } from "sonner";
 import {
   Tooltip,
   TooltipContent,
@@ -27,16 +28,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <TooltipProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster richColors />
+            <Navbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
         </TooltipProvider>
       </body>
     </html>

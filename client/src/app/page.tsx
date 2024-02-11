@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/tooltip";
 
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { toast } from "sonner";
 
 async function getJobData(): Promise<JobColumnType[]> {
   const response = await fetch("http://localhost:5000/api/v1/job", {
@@ -28,7 +29,7 @@ async function getJobData(): Promise<JobColumnType[]> {
   });
 
   if (!response.ok) {
-    throw new Error("failed to fetch data");
+    toast.error("Failed to fetch data")
   }
   return response.json();
 }
