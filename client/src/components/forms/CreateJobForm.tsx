@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/textarea";
 
 import {
   Card,
@@ -111,39 +111,39 @@ export function CreateJobForm() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="">
-                <FormField
-                  control={form.control}
-                  name="jobError"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Error</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormDescription>Summarize the error</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="">
-                <FormField
-                  control={form.control}
-                  name="jobDescription"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Job/Error description</FormLabel>
-                      <FormControl>
-                        <Textarea {...field} />
-                      </FormControl>
-                      <FormDescription>Describe the job</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
               <div className="grid grid-cols-2 gap-4">
+                <div className="col-span-2">
+                  <FormField
+                    control={form.control}
+                    name="jobError"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Error</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormDescription>Summarize the error</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="col-span-2">
+                  <FormField
+                    control={form.control}
+                    name="jobDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Job/Error description</FormLabel>
+                        <FormControl>
+                          <Textarea {...field} />
+                        </FormControl>
+                        <FormDescription>Describe the job</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <div className="">
                   <FormField
                     control={form.control}
@@ -161,39 +161,41 @@ export function CreateJobForm() {
                   />
                 </div>
                 <div className="">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Device Category</FormLabel>
-                      <FormControl>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <SelectTrigger className="">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Laptop">Laptop</SelectItem>
-                            <SelectItem value="Desktop">Desktop</SelectItem>
-                            <SelectItem value="Mobile">Mobile</SelectItem>
-                            <SelectItem value="Server">Server</SelectItem>
-                            <SelectItem value="SparePart">Spare Part</SelectItem>
-                            <SelectItem value="Other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      {/* <FormDescription>
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Device Category</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <SelectTrigger className="">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Laptop">Laptop</SelectItem>
+                              <SelectItem value="Desktop">Desktop</SelectItem>
+                              <SelectItem value="Mobile">Mobile</SelectItem>
+                              <SelectItem value="Server">Server</SelectItem>
+                              <SelectItem value="SparePart">
+                                Spare Part
+                              </SelectItem>
+                              <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        {/* <FormDescription>
                         Categorize the income source
                       </FormDescription> */}
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-                <div className="col-span-2">
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="">
                   <FormField
                     control={form.control}
                     name="cusName"
@@ -217,10 +219,7 @@ export function CreateJobForm() {
                       <FormItem>
                         <FormLabel>Customer Phone Number</FormLabel>
                         <FormControl>
-                          <Input
-                            type="number"
-                            {...field}
-                          />
+                          <Input type="number" {...field} />
                         </FormControl>
                         {/* <FormDescription>Add the phoneNum</FormDescription> */}
                         <FormMessage />
@@ -236,10 +235,7 @@ export function CreateJobForm() {
                       <FormItem>
                         <FormLabel>Additional Phone Number *</FormLabel>
                         <FormControl>
-                          <Input
-                            type="number"
-                            {...field}
-                          />
+                          <Input type="number" {...field} />
                         </FormControl>
                         {/* <FormDescription>Add the phoneNum</FormDescription> */}
                         <FormMessage />
@@ -247,9 +243,24 @@ export function CreateJobForm() {
                     )}
                   />
                 </div>
-              </div>
-            
- {/* 
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email *</FormLabel>
+                        <FormControl>
+                          <Input type="email" {...field} />
+                        </FormControl>
+                        {/* <FormDescription>Add the phoneNum</FormDescription> */}
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* 
               <div className="">
                 <FormField
                   control={form.control}
@@ -287,7 +298,7 @@ export function CreateJobForm() {
                   )}
                 />
               </div> */}
-
+              </div>
               <Button type="submit">Add</Button>
             </form>
           </Form>
