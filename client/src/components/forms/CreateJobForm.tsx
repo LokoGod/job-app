@@ -24,6 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea"
 
 import {
   Card,
@@ -36,9 +37,6 @@ import { toast } from "sonner";
 // import { DatePickerDemo } from "../../DatePicker";
 
 const formSchema = z.object({
-  jobId: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
   jobError: z.string().min(2, {
     message: "Error must be at least 2 characters.",
   }),
@@ -81,7 +79,6 @@ export function CreateJobForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      jobId: "",
       jobError: "",
     },
   });
@@ -117,35 +114,14 @@ export function CreateJobForm() {
               <div className="">
                 <FormField
                   control={form.control}
-                  name="jobId"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>jobId</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Shoping discount surplus"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Explain the income breifly.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="">
-                <FormField
-                  control={form.control}
                   name="jobError"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>jobError</FormLabel>
+                      <FormLabel>Error</FormLabel>
                       <FormControl>
-                        <Input placeholder="jobError" {...field} />
+                        <Input {...field} />
                       </FormControl>
-                      <FormDescription>Add the jobError</FormDescription>
+                      <FormDescription>Summarize the error</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -157,11 +133,11 @@ export function CreateJobForm() {
                   name="jobDescription"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>jobDescription</FormLabel>
+                      <FormLabel>Job/Error description</FormLabel>
                       <FormControl>
-                        <Input placeholder="jobDescription" {...field} />
+                        <Textarea {...field} />
                       </FormControl>
-                      <FormDescription>Add the jobDescription</FormDescription>
+                      <FormDescription>Describe the job</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -174,43 +150,60 @@ export function CreateJobForm() {
                     name="model"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>model</FormLabel>
+                        <FormLabel>Device Model</FormLabel>
                         <FormControl>
-                          <Input placeholder="model" {...field} />
+                          <Input {...field} />
                         </FormControl>
-                        <FormDescription>Add the model</FormDescription>
+                        {/* <FormDescription>Add the model</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
                 <div className="">
-                  <FormField
-                    control={form.control}
-                    name="category"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>category</FormLabel>
-                        <FormControl>
-                          <Input placeholder="category" {...field} />
-                        </FormControl>
-                        <FormDescription>Add the category</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Device Category</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <SelectTrigger className="">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Laptop">Laptop</SelectItem>
+                            <SelectItem value="Desktop">Desktop</SelectItem>
+                            <SelectItem value="Mobile">Mobile</SelectItem>
+                            <SelectItem value="Server">Server</SelectItem>
+                            <SelectItem value="SparePart">Spare Part</SelectItem>
+                            <SelectItem value="Other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      {/* <FormDescription>
+                        Categorize the income source
+                      </FormDescription> */}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+                <div className="col-span-2">
                   <FormField
                     control={form.control}
                     name="cusName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>cusName</FormLabel>
+                        <FormLabel>Customer Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="cusName" {...field} />
+                          <Input {...field} />
                         </FormControl>
-                        <FormDescription>Add the cusName</FormDescription>
+                        {/* <FormDescription>Add the cusName</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -222,52 +215,41 @@ export function CreateJobForm() {
                     name="phoneNum"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>phoneNum</FormLabel>
+                        <FormLabel>Customer Phone Number</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="phoneNum"
                             type="number"
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription>Add the phoneNum</FormDescription>
+                        {/* <FormDescription>Add the phoneNum</FormDescription> */}
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="phoneNum2"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Additional Phone Number *</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            {...field}
+                          />
+                        </FormControl>
+                        {/* <FormDescription>Add the phoneNum</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
               </div>
-              {/* <div className="">
-                <FormField
-                  control={form.control}
-                  name="income_category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Category</FormLabel>
-                      <FormControl>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <SelectTrigger className="">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Light">Light</SelectItem>
-                            <SelectItem value="Dark">Dark</SelectItem>
-                            <SelectItem value="System">System</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormDescription>
-                        Categorize the income source
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
+            
+ {/* 
               <div className="">
                 <FormField
                   control={form.control}
