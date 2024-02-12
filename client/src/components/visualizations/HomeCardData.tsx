@@ -15,8 +15,22 @@ import { PiPulseDuotone } from "react-icons/pi";
 import { HiOutlineWindow } from "react-icons/hi2";
 import { TbUsers } from "react-icons/tb";
 import { LuDollarSign } from "react-icons/lu";
+import { toast } from "sonner";
 
-const HomeCardData = () => {
+async function getJobData() {
+  const response = await fetch("http://localhost:5000/api/v1/job", {
+    next: { revalidate: 300 },
+  });
+
+  if (!response.ok) {
+    toast.error("Failed to fetch data");
+  }
+  return response.json();
+}
+
+const HomeCardData = async () => {
+  const jobData = await getJobData();
+  
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 my-5 mx-10">
       <Card>
