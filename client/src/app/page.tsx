@@ -35,7 +35,7 @@ async function getJobData(): Promise<JobColumnType[]> {
 }
 
 export default async function Home() {
-  const jobData = await getJobData();
+  const jobData = (await getJobData()).reverse();
 
   return (
     <main>
