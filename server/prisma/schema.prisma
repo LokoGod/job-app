@@ -17,7 +17,7 @@ model User {
 
 model Job {
   id             Int      @id @default(autoincrement())
-  jobId          String
+  jobId          String    
   jobError       String
   jobDescription String
   status         String   @default("pending")

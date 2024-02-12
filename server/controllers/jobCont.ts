@@ -20,7 +20,6 @@ const getAllJobListings = async (req: any, res: any) => {
 
 const createJob = async (req: any, res: any) => {
   const {
-    jobId,
     jobError,
     jobDescription,
     status,
@@ -34,7 +33,6 @@ const createJob = async (req: any, res: any) => {
   } = req.body;
   try {
     const job = await jobRepo.createJob(
-      jobId,
       jobError,
       jobDescription,
       status,

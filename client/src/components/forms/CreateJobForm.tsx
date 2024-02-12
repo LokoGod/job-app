@@ -167,73 +167,75 @@ export function CreateJobForm() {
                   )}
                 />
               </div>
-              <div className="">
-                <FormField
-                  control={form.control}
-                  name="model"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>model</FormLabel>
-                      <FormControl>
-                        <Input placeholder="model" {...field} />
-                      </FormControl>
-                      <FormDescription>Add the model</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>category</FormLabel>
-                      <FormControl>
-                        <Input placeholder="category" {...field} />
-                      </FormControl>
-                      <FormDescription>Add the category</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="">
-                <FormField
-                  control={form.control}
-                  name="cusName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>cusName</FormLabel>
-                      <FormControl>
-                        <Input placeholder="cusName" {...field} />
-                      </FormControl>
-                      <FormDescription>Add the cusName</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="">
-                <FormField
-                  control={form.control}
-                  name="phoneNum"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>phoneNum</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="phoneNum"
-                          type="number"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>Add the phoneNum</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="model"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>model</FormLabel>
+                        <FormControl>
+                          <Input placeholder="model" {...field} />
+                        </FormControl>
+                        <FormDescription>Add the model</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>category</FormLabel>
+                        <FormControl>
+                          <Input placeholder="category" {...field} />
+                        </FormControl>
+                        <FormDescription>Add the category</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="cusName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>cusName</FormLabel>
+                        <FormControl>
+                          <Input placeholder="cusName" {...field} />
+                        </FormControl>
+                        <FormDescription>Add the cusName</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="phoneNum"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>phoneNum</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="phoneNum"
+                            type="number"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>Add the phoneNum</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
               {/* <div className="">
                 <FormField

@@ -6,7 +6,6 @@ const getAllJobListings = async () => {
 };
 
 const createJob = async (
-  jobId: string,
   jobError: string,
   jobDescription: string,
   status: string,
@@ -29,6 +28,10 @@ const createJob = async (
   const device = await prisma.device.create({
     data: { model, deviceCategoryId:  deviceCategory.id, customerId: customer.id}
   })
+
+  const existingJobCount = await prisma.job.count()
+  const jobIdPrefix = category.substring(0, 3).toUpperCase()
+  const jobId = `${jobIdPrefix} - 0${existingJobCount + 1}`
 
   const job = await prisma.job.create({
     data: {
