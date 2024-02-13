@@ -33,6 +33,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "sonner";
+import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
 
 const formSchema = z.object({
   jobError: z.string().min(2, {
