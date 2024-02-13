@@ -154,7 +154,6 @@ export function CreateJobForm() {
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
-                        {/* <FormDescription>Add the model</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -187,9 +186,6 @@ export function CreateJobForm() {
                             </SelectContent>
                           </Select>
                         </FormControl>
-                        {/* <FormDescription>
-                        Categorize the income source
-                      </FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -205,7 +201,6 @@ export function CreateJobForm() {
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
-                        {/* <FormDescription>Add the cusName</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -221,7 +216,6 @@ export function CreateJobForm() {
                         <FormControl>
                           <Input type="number" {...field} />
                         </FormControl>
-                        {/* <FormDescription>Add the phoneNum</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -237,7 +231,6 @@ export function CreateJobForm() {
                         <FormControl>
                           <Input type="number" {...field} />
                         </FormControl>
-                        {/* <FormDescription>Add the phoneNum</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -253,7 +246,6 @@ export function CreateJobForm() {
                         <FormControl>
                           <Input type="email" {...field} />
                         </FormControl>
-                        {/* <FormDescription>Add the phoneNum</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
