@@ -92,11 +92,10 @@ export function CreateJobForm() {
         "http://localhost:5000/api/v1/job",
         values
       );
-      console.log(response);
+      toast.success("Job record saved successfully!")
     } catch (error) {
       toast.error("Cannot create a job at the moment");
     }
-    console.log(values);
   }
 
   return (

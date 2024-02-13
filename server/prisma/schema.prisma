@@ -49,7 +49,7 @@ model DeviceCategories {
 model Customer {
   id        Int      @id @default(autoincrement())
   cusName   String
-  phoneNum  BigInt      @unique
+  phoneNum  BigInt     
   phoneNum2 BigInt?
   email     String?
   Job       Job[]
