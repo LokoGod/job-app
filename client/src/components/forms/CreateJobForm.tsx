@@ -34,6 +34,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "sonner";
+import router, { useRouter } from "next/router";
 // import { DatePickerDemo } from "../../DatePicker";
 
 const formSchema = z.object({
@@ -96,6 +97,7 @@ export function CreateJobForm() {
     } catch (error) {
       toast.error("Cannot create a job at the moment");
     }
+    router.push("/")
   }
 
   return (
