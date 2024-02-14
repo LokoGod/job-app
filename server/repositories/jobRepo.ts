@@ -26,12 +26,16 @@ const createJob = async (
   });
 
   const device = await prisma.device.create({
-    data: { model, deviceCategoryId:  deviceCategory.id, customerId: customer.id}
-  })
+    data: {
+      model,
+      deviceCategoryId: deviceCategory.id,
+      customerId: customer.id,
+    },
+  });
 
-  const existingJobCount = await prisma.job.count()
-  const jobIdPrefix = category.substring(0, 3).toUpperCase()
-  const jobId = `${jobIdPrefix} - 0${existingJobCount + 1}`
+  const existingJobCount = await prisma.job.count();
+  const jobIdPrefix = category.substring(0, 3).toUpperCase();
+  const jobId = `${jobIdPrefix} - 0${existingJobCount + 1}`;
 
   const job = await prisma.job.create({
     data: {
@@ -41,11 +45,15 @@ const createJob = async (
       status,
       createdDate: new Date(),
       deviceId: device.id,
-      customerId: customer.id
-    }
-  })
-  return job
+      customerId: customer.id,
+    },
+  });
+  return job;
 };
 
-const jobRepo = { getAllJobListings, createJob };
+const getSpecificJob = async (id: number) => {
+  return prisma.job.findUnique({ where: { id: id } });
+};
+
+const jobRepo = { getAllJobListings, createJob, getSpecificJob };
 export default jobRepo;
