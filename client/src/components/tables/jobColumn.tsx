@@ -137,9 +137,9 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <RxClock className="mr-5" />
+              <RxClock className="mr-5"/>
                 Update status
-              </DropdownMenuItem>
+                </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
