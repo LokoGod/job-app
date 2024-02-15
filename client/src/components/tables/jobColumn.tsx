@@ -24,6 +24,10 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import { LuArrowUpDown } from "react-icons/lu";
 import Link from "next/link";
 
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
+import { RxClock } from "react-icons/rx";
+
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type JobColumnType = {
@@ -128,23 +132,27 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
               <RxDotsHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
+          <DropdownMenuContent className="w-44">
             <DropdownMenuLabel>Jobs</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
+                <RxClock className="mr-5" />
                 Update status
-                <DropdownMenuShortcut>⇧B</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <a href="/viewDetailedJob">
                 <DropdownMenuItem>
+                  <FaRegEye className="mr-5" />
                   View job
-                  <DropdownMenuShortcut>⇧V</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </a>
+              <DropdownMenuItem>
+                <FaRegTrashAlt className="mr-5" />
+                Delete job
+              </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
