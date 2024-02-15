@@ -28,6 +28,11 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { RxClock } from "react-icons/rx";
 
+const updateStatus = (id: number) => {
+  const res =  console.log(id);
+  return res
+}
+
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type JobColumnType = {
@@ -122,7 +127,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
     // Added dropdown menu to rows
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const jobId = row.getValue("jobId");
 
       return (
         <DropdownMenu>
@@ -143,12 +148,12 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <a href="/viewDetailedJob">
+              <Link href="/viewDetailedJob" as={`/viewDetailedJob/${jobId}`}>
                 <DropdownMenuItem>
-                  <FaRegEye className="mr-5" />
+                  <FaRegEye className="mr-5"/>
                   View job
                 </DropdownMenuItem>
-              </a>
+              </Link>
               <DropdownMenuItem>
                 <FaRegTrashAlt className="mr-5" />
                 Delete job
