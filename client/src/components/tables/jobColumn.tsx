@@ -6,9 +6,15 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +22,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { RxDotsHorizontal } from "react-icons/rx";
 import { LuArrowUpDown } from "react-icons/lu";
+import Link from "next/link";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -74,11 +81,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
       );
     },
     cell: ({ row }) => {
-      return (
-       
-          <Badge>{row.getValue("status")}</Badge>
-       
-      );
+      return <Badge>{row.getValue("status")}</Badge>;
     },
   },
   {
@@ -125,16 +128,24 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
               <RxDotsHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              // onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>Jobs</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                Update status
+                <DropdownMenuShortcut>⇧B</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <a href="/viewDetailedJob">
+                <DropdownMenuItem>
+                  View job
+                  <DropdownMenuShortcut>⇧V</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </a>
+            </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
       );
