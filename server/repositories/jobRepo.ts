@@ -8,6 +8,7 @@ const getAllJobListings = async () => {
 const createJob = async (
   jobError: string,
   jobDescription: string,
+  jobIncludedItems: string,
   status: string,
   createdDate: Date,
   model: string,
@@ -42,6 +43,7 @@ const createJob = async (
       jobId,
       jobError,
       jobDescription,
+      jobIncludedItems,
       status,
       createdDate: new Date(),
       deviceId: device.id,

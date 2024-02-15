@@ -43,6 +43,9 @@ const formSchema = z.object({
   jobDescription: z.string().min(2, {
     message: "Description must be at least 2 characters.",
   }),
+  jobIncludedItems: z.string().min(2, {
+    message: "an item must be at least 2 characters"
+  }),
   model: z.string().min(2, {
     message: "Model must be at least 2 characters.",
   }),
@@ -185,6 +188,22 @@ export function CreateJobForm() {
                             </SelectContent>
                           </Select>
                         </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="col-span-2">
+                  <FormField
+                    control={form.control}
+                    name="jobIncludedItems"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Included</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormDescription></FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}

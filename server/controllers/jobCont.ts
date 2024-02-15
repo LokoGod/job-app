@@ -22,6 +22,7 @@ const createJob = async (req: any, res: any) => {
   const {
     jobError,
     jobDescription,
+    jobIncludedItems,
     status,
     createdDate,
     model,
@@ -35,6 +36,7 @@ const createJob = async (req: any, res: any) => {
     const job = await jobRepo.createJob(
       jobError,
       jobDescription,
+      jobIncludedItems,
       status,
       createdDate,
       model,

@@ -16,16 +16,17 @@ model User {
 }
 
 model Job {
-  id             Int      @id @default(autoincrement())
-  jobId          String    
-  jobError       String
-  jobDescription String
-  status         String   @default("pending")
-  createdDate    DateTime @default(now())
-  device         Device   @relation(fields: [deviceId], references: [id])
-  deviceId       Int      @unique
-  customer       Customer @relation(fields: [customerId], references: [id])
-  customerId     Int
+  id               Int      @id @default(autoincrement())
+  jobId            String
+  jobError         String
+  jobDescription   String
+  jobIncludedItems String
+  status           String   @default("pending")
+  createdDate      DateTime @default(now())
+  device           Device   @relation(fields: [deviceId], references: [id])
+  deviceId         Int      @unique
+  customer         Customer @relation(fields: [customerId], references: [id])
+  customerId       Int
 }
 
 // job and device one-one
@@ -49,7 +50,7 @@ model DeviceCategories {
 model Customer {
   id        Int      @id @default(autoincrement())
   cusName   String
-  phoneNum  BigInt     
+  phoneNum  BigInt
   phoneNum2 BigInt?
   email     String?
   Job       Job[]

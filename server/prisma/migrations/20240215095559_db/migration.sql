@@ -12,6 +12,7 @@ CREATE TABLE "Job" (
     "jobId" TEXT NOT NULL,
     "jobError" TEXT NOT NULL,
     "jobDescription" TEXT NOT NULL,
+    "jobIncludedItems" TEXT NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'pending',
     "createdDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deviceId" INTEGER NOT NULL,
@@ -51,9 +52,6 @@ CREATE TABLE "Customer" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Job_deviceId_key" ON "Job"("deviceId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Customer_phoneNum_key" ON "Customer"("phoneNum");
 
 -- AddForeignKey
 ALTER TABLE "Job" ADD CONSTRAINT "Job_deviceId_fkey" FOREIGN KEY ("deviceId") REFERENCES "Device"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
