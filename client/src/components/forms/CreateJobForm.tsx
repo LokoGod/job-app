@@ -43,8 +43,8 @@ const formSchema = z.object({
   jobDescription: z.string().min(2, {
     message: "Description must be at least 2 characters.",
   }),
-  jobIncludedItems: z.string().min(2, {
-    message: "an item must be at least 2 characters"
+  jobIncludedItems: z.string().min(1, {
+    message: "an item must be at least 1 characters"
   }),
   model: z.string().min(2, {
     message: "Model must be at least 2 characters.",
