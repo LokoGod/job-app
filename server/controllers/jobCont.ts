@@ -53,4 +53,15 @@ const createJob = async (req: any, res: any) => {
   }
 };
 
-export { getAllJobListings, createJob };
+const getSpecificJob = async (req: any, res: any) => {
+  const { id } = req.params
+  try {
+    const job = await jobRepo.getSpecificJob(id)
+    res.status(200).json({ job })
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error"})
+  }
+}
+
+export { getAllJobListings, createJob, getSpecificJob };
