@@ -128,7 +128,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
     accessorKey: "id",
     header: "",
     cell: ({ row }) => {
-      const jobId = row.getValue("id");
+      const jobId: string = row.getValue("id");
 
       return (
         <DropdownMenu>
@@ -149,7 +149,12 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href={`/viewDetailedJob/${jobId}`}>
+            <Link
+              href={{
+                pathname: `/viewDetailedJob`, // Base path
+                query: { id: jobId }, // Pass ID as query param
+              }}
+            >
                 <DropdownMenuItem>
                   <FaRegEye className="mr-5"/>
                   View job
