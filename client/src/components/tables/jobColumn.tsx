@@ -149,7 +149,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/viewDetailedJob" as={`/viewDetailedJob/${jobId}`}>
+              <Link href="/viewDetailedJob" as={`/viewDetailedJob?id=${jobId}`}>
                 <DropdownMenuItem>
                   <FaRegEye className="mr-5"/>
                   View job

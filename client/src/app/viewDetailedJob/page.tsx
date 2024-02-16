@@ -1,8 +1,8 @@
-
 export default function ViewDetailedJob() {
   return (
     <div>
-      <h1>Hello</h1>
+      <h1>Below is the error</h1>
+      <p></p>
     </div>
   );
 }
