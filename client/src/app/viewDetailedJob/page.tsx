@@ -1,7 +1,9 @@
 import { toast } from "sonner";
 
-async function getJobData() {
+async function getJobData(id: number) {
   const response = await fetch(`http://localhost:5000/api/v1/job/${id}`, {
+    method: "GET",
+    headers: {},
     cache: "no-store",
   });
 

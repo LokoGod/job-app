@@ -54,7 +54,7 @@ const createJob = async (req: any, res: any) => {
 };
 
 const getSpecificJob = async (req: any, res: any) => {
-  const { id } = req.params
+  const id = Number(req.params.id)
   try {
     const job = await jobRepo.getSpecificJob(id)
     res.status(200).json({ job })
