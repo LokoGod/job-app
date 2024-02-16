@@ -125,9 +125,10 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
   // },
   {
     // Added dropdown menu to rows
-    id: "actions",
+    accessorKey: "id",
+    header: "",
     cell: ({ row }) => {
-      const jobId = row.getValue("jobId");
+      const jobId = row.getValue("id");
 
       return (
         <DropdownMenu>
