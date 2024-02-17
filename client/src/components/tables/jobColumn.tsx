@@ -151,8 +151,8 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
             <DropdownMenuGroup>
             <Link
               href={{
-                pathname: `/viewDetailedJob`, // Base path
-                query: { id: jobId }, // Pass ID as query param
+                pathname: `/viewDetailedJob`,
+                query: { id: jobId }, 
               }}
             >
                 <DropdownMenuItem>
