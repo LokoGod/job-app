@@ -18,7 +18,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
 
 import { RxDotsHorizontal } from "react-icons/rx";
 import { LuArrowUpDown } from "react-icons/lu";
