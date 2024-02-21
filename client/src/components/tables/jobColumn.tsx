@@ -17,6 +17,14 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -28,9 +36,9 @@ import { FaRegEye } from "react-icons/fa";
 import { RxClock } from "react-icons/rx";
 
 const updateStatus = (id: number) => {
-  const res =  console.log(id);
-  return res
-}
+  const res = console.log(id);
+  return res;
+};
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -128,6 +136,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
     header: "",
     cell: ({ row }) => {
       const jobId: string = row.getValue("id");
+      const jobDescription: string = row.getValue("jobDescription");
 
       return (
         <DropdownMenu>
@@ -141,21 +150,29 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
             <DropdownMenuLabel>Jobs</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-              <RxClock className="mr-5"/>
-                Update status
-                </DropdownMenuItem>
+              <Dialog>
+                <DialogTrigger className="flex p-1 justify-between text-sm">
+                  <RxClock className="mr-5 ml-0.5 mt-0.5" size={15} />
+                  <p>Update job status</p>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Update Status</DialogTitle>
+                    <DialogDescription>{jobDescription}</DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-            <Link
-              href={{
-                pathname: `/viewDetailedJob`,
-                query: { id: jobId }, 
-              }}
-            >
+              <Link
+                href={{
+                  pathname: `/viewDetailedJob`,
+                  query: { id: jobId },
+                }}
+              >
                 <DropdownMenuItem>
-                  <FaRegEye className="mr-5"/>
+                  <FaRegEye className="mr-5" />
                   View job
                 </DropdownMenuItem>
               </Link>
