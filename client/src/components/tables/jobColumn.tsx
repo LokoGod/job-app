@@ -136,7 +136,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
     header: "",
     cell: ({ row }) => {
       const jobId: string = row.getValue("id");
-      const jobDescription: string = row.getValue("jobDescription");
+      const jobStatus: string = row.getValue("status");
 
       return (
         <DropdownMenu>
@@ -157,8 +157,8 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Update Status</DialogTitle>
-                    <DialogDescription>{jobDescription}</DialogDescription>
+                    <DialogTitle className="mb-5">Update Status</DialogTitle>
+                    <DialogDescription>Current Status: {jobStatus}</DialogDescription>
                   </DialogHeader>
                 </DialogContent>
               </Dialog>
