@@ -35,6 +35,7 @@ import {
 import { toast } from "sonner";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { redirect, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   jobError: z.string().min(2, {
@@ -78,6 +79,9 @@ const formSchema = z.object({
 });
 
 export function CreateJobForm() {
+
+  const router = useRouter()
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -96,6 +100,7 @@ export function CreateJobForm() {
         values
       );
       toast.success("Job record saved successfully!")
+      router.push("/")
     } catch (error) {
       toast.error("Cannot create a job at the moment");
     }
