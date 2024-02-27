@@ -37,6 +37,7 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { redirect, useRouter } from "next/navigation";
 
+
 const formSchema = z.object({
   jobError: z.string().min(2, {
     message: "Error must be at least 2 characters.",
@@ -56,13 +57,12 @@ const formSchema = z.object({
   cusName: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
-  phoneNum: z.coerce.number().gte(10, {
-    message: "phoneNum must be at least 2 digits.",
+  phoneNum: z.string().min(10, {
+    message: "Phone-num must have 10 numericals.",
   }),
-  phoneNum2: z.coerce
-    .number()
-    .gte(10, {
-      message: "phoneNum must be at least 2 digits.",
+  phoneNum2: z.string()
+    .min(10, {
+      message: "Phone-num must have 10 numericals.",
     })
     .optional(),
   email: z
