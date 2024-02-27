@@ -1,9 +1,8 @@
 import jobRepo from "../repositories/jobRepo";
 
 const json = (param: any): any => {
-  return JSON.stringify(
-    param,
-    (key, value) => (typeof value === "bigint" ? value.toString() : value)
+  return JSON.stringify(param, (key, value) =>
+    typeof value === "bigint" ? value.toString() : value
   );
 };
 export default json;
@@ -54,14 +53,29 @@ const createJob = async (req: any, res: any) => {
 };
 
 const getSpecificJob = async (req: any, res: any) => {
-  const id = Number(req.params.id)
+  const id = Number(req.params.id);
   try {
-    const job = await jobRepo.getSpecificJob(id)
-    res.status(200).json({ job })
+    const job = await jobRepo.getSpecificJob(id);
+    if (!id) {
+      res.status(404).json({ error: "Not found" });
+    } else {
+      res.status(200).json({ job });
+    }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error"})
+    res.status(500).json({ error: "Internal server error" });
   }
-}
+};
 
-export { getAllJobListings, createJob, getSpecificJob };
+const deleteSpecificJob = async (req: any, res: any) => {
+  const id = Number(req.params.id);
+  try {
+    const job = await jobRepo.deleteSpecificJob(id);
+    res.status(200).json({ job });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export { getAllJobListings, createJob, getSpecificJob, deleteSpecificJob };

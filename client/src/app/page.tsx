@@ -36,6 +36,7 @@ async function getJobData(): Promise<JobColumnType[]> {
 
 export default async function Home() {
   const jobData = (await getJobData()).reverse();
+  const numberOfJob = jobData.length;
 
   return (
     <main>
@@ -63,7 +64,7 @@ export default async function Home() {
               <CardHeader>
                 <CardTitle>Recent Jobs</CardTitle>
                 <CardDescription>
-                  You made 265 sales this month.
+                  You made {numberOfJob} jobs this month.
                 </CardDescription>
               </CardHeader>
               <CardContent>
