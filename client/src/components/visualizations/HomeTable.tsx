@@ -22,7 +22,7 @@ async function getJobData() {
 }
 
 export default async function HomeTable() {
-  const jobData = await getJobData();
+  const jobData = (await getJobData()).reverse();
   const latestJobs = jobData.slice(0, 3);
   return (
     <Table>
