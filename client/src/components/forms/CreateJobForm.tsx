@@ -37,7 +37,6 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { redirect, useRouter } from "next/navigation";
 
-
 const formSchema = z.object({
   jobError: z.string().min(2, {
     message: "Error must be at least 2 characters.",
@@ -46,7 +45,7 @@ const formSchema = z.object({
     message: "Description must be at least 2 characters.",
   }),
   jobIncludedItems: z.string().min(1, {
-    message: "an item must be at least 1 characters"
+    message: "an item must be at least 1 characters",
   }),
   model: z.string().min(2, {
     message: "Model must be at least 2 characters.",
@@ -60,7 +59,8 @@ const formSchema = z.object({
   phoneNum: z.string().min(10, {
     message: "Phone-num must have 10 numericals.",
   }),
-  phoneNum2: z.string()
+  phoneNum2: z
+    .string()
     .min(10, {
       message: "Phone-num must have 10 numericals.",
     })
@@ -79,8 +79,7 @@ const formSchema = z.object({
 });
 
 export function CreateJobForm() {
-
-  const router = useRouter()
+  const router = useRouter();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -99,8 +98,8 @@ export function CreateJobForm() {
         "http://localhost:5000/api/v1/job",
         values
       );
-      toast.success("Job record saved successfully!")
-      router.push("/")
+      toast.success("Job record saved successfully!");
+      router.push("/");
     } catch (error) {
       toast.error("Cannot create a job at the moment");
     }

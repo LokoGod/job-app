@@ -34,6 +34,9 @@ import Link from "next/link";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { RxClock } from "react-icons/rx";
+import axios from "axios";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const updateStatus = (id: number) => {
   const res = console.log(id);
@@ -138,6 +141,19 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
       const jobId: string = row.getValue("id");
       const jobStatus: string = row.getValue("status");
 
+      const router = useRouter()
+
+      const handleDeleteJob = async () => {
+        try {
+          await axios.delete(`http://localhost:5000/api/v1/job/${jobId}`);
+          toast.success("Job deleted successfully");
+          window.location.reload();
+        } catch (error) {
+          console.error("Error deleting job:", error);
+          toast.error("Error deleting job");
+        }
+      };
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -176,7 +192,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
                   View job
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDeleteJob}>
                 <FaRegTrashAlt className="mr-5" />
                 Delete job
               </DropdownMenuItem>
