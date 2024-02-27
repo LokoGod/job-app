@@ -56,7 +56,7 @@ const getSpecificJob = async (req: any, res: any) => {
   const id = Number(req.params.id);
   try {
     const job = await jobRepo.getSpecificJob(id);
-    if (!id) {
+    if (!job) {
       res.status(404).json({ error: "Not found" });
     } else {
       res.status(200).json({ job });
@@ -71,7 +71,11 @@ const deleteSpecificJob = async (req: any, res: any) => {
   const id = Number(req.params.id);
   try {
     const job = await jobRepo.deleteSpecificJob(id);
-    res.status(200).json({ job });
+    if (!job) {
+      res.status(404).json({ error: "Not found" });
+    } else {
+      res.status(200).json({ job });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
