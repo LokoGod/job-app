@@ -1,5 +1,4 @@
-export default async function ViewDetailedJob() {
-
+export default async function viewDetailedJob() {
   return (
     <div>
       <h1>Hello, there!</h1>
