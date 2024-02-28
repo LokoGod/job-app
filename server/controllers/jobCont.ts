@@ -59,7 +59,7 @@ const getSpecificJob = async (req: any, res: any) => {
     if (!job) {
       res.status(404).json({ error: "Not found" });
     } else {
-      res.status(200).json({ job });
+      res.status(200).type("json").send(json(job));
     }
   } catch (error) {
     console.error(error);

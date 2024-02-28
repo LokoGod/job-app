@@ -54,12 +54,23 @@ const createJob = async (
 };
 
 const getSpecificJob = async (id: number) => {
-  return prisma.job.findUnique({ where: { id } });
+  return prisma.job.findUnique({
+    where: { id },
+    include: { device: true, customer: true },
+  });
 };
 
 const deleteSpecificJob = async (id: number) => {
-  return prisma.job.delete({ where: { id } });
+  return prisma.job.delete({
+    where: { id },
+    include: { device: true, customer: true },
+  });
 };
 
-const jobRepo = { getAllJobListings, createJob, getSpecificJob, deleteSpecificJob };
+const jobRepo = {
+  getAllJobListings,
+  createJob,
+  getSpecificJob,
+  deleteSpecificJob,
+};
 export default jobRepo;
