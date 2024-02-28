@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 type Params = {
   params: {
@@ -30,24 +31,44 @@ export default async function ViewDetailedJob({ params: { id } }: Params) {
   const jobData = await getJobData();
 
   return (
-    <div>
-      <Card>
+    <div className="flex justify-center items-center h-full">
+      <Card className="w-[500px]">
         <CardHeader className="flex justify-between">
           <CardTitle>{jobData.jobId}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-between">
+            <p>{jobData.device.model}</p>
             <p>{jobData.jobError}</p>
-            <p>{jobData.status}</p>
           </div>
           <div>
-            <p>{jobData.device.model}</p>
+            <CardDescription>{jobData.jobDescription}</CardDescription>
+            <p>{jobData.jobIncludedItems}</p>
+            <p>{jobData.status}</p>
           </div>
         </CardContent>
-        <CardFooter></CardFooter>
+        <Separator className="my-2" />
+
+        <CardFooter className="">
+          <div className="flex h-5 items-center space-x-4 text-sm">
+            <p>{jobData.customer.cusName}</p>
+            <Separator orientation="vertical" />
+            <p>{jobData.customer.phoneNum}</p>
+            <Separator orientation="vertical" />
+            <p>
+              {jobData.customer.phoneNum2
+                ? jobData.customer.phoneNum2
+                : "There is no 2nd phone number"}
+            </p>
+            <Separator orientation="vertical" />
+            <p>
+              {jobData.customer.email
+                ? jobData.customer.email
+                : "There is no email"}
+            </p>
+          </div>
+        </CardFooter>
       </Card>
-      <h1>Hello, there viewers!</h1>
-      <h2>jobError: {jobData.jobError}</h2>
     </div>
   );
 }
