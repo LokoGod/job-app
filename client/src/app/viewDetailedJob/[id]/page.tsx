@@ -8,6 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { TbMoodEmpty } from "react-icons/tb";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 
 type Params = {
   params: {
@@ -32,39 +35,54 @@ export default async function ViewDetailedJob({ params: { id } }: Params) {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <Card className="w-[500px]">
-        <CardHeader className="flex justify-between">
-          <CardTitle>{jobData.jobId}</CardTitle>
+      <Card className="w-[800px]">
+        <CardHeader className="flex">
+          <CardTitle>
+            {jobData.jobId} <Badge>{jobData.status}</Badge>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-between">
             <p>{jobData.device.model}</p>
             <p>{jobData.jobError}</p>
           </div>
+          <Separator className="my-4" />
           <div>
             <CardDescription>{jobData.jobDescription}</CardDescription>
-            <p>{jobData.jobIncludedItems}</p>
-            <p>{jobData.status}</p>
+            <div className="flex justify-between">
+              <div className="flex items-center space-x-2 mt-10">
+                <Label htmlFor="terms">Included Items:</Label>
+                <p className="text-sm">{jobData.jobIncludedItems}</p>
+              </div>
+              <div className="flex items-center space-x-2 mt-10">
+                <Label htmlFor="terms">Date:</Label>
+                <p className="text-sm">{jobData.createdDate.slice(0, 10)}</p>
+              </div>
+            </div>
           </div>
         </CardContent>
-        <Separator className="my-2" />
+        <Separator className="my-4" />
 
-        <CardFooter className="">
-          <div className="flex h-5 items-center space-x-4 text-sm">
+        <CardFooter className=" justify-evenly">
+          <div className="flex h-5 items-center space-x-4 ">
             <p>{jobData.customer.cusName}</p>
             <Separator orientation="vertical" />
             <p>{jobData.customer.phoneNum}</p>
             <Separator orientation="vertical" />
             <p>
-              {jobData.customer.phoneNum2
-                ? jobData.customer.phoneNum2
-                : "There is no 2nd phone number"}
+              {jobData.customer.phoneNum2 ? (
+                jobData.customer.phoneNum2
+              ) : (
+                <TbMoodEmpty />
+              )}
             </p>
             <Separator orientation="vertical" />
             <p>
-              {jobData.customer.email
-                ? jobData.customer.email
-                : "There is no email"}
+              {jobData.customer.email ? (
+                jobData.customer.email
+              ) : (
+                <TbMoodEmpty />
+              )}
             </p>
           </div>
         </CardFooter>
