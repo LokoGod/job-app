@@ -37,6 +37,46 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { redirect, useRouter } from "next/navigation";
 
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
+ 
+import { cn } from "@/lib/utils"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { useState } from "react";
+
+const frameworks = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+]
+
 const formSchema = z.object({
   jobError: z.string().min(2, {
     message: "Error must be at least 2 characters.",
@@ -80,6 +120,8 @@ const formSchema = z.object({
 
 export function CreateJobForm() {
   const router = useRouter();
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState("")
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
