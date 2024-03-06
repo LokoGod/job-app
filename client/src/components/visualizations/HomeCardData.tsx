@@ -18,7 +18,7 @@ import { LuDollarSign } from "react-icons/lu";
 import { toast } from "sonner";
 
 async function getJobData() {
-  const response = await fetch("http://localhost:5000/api/v1/job", {
+  const response = await fetch("https://job-app-q299.onrender.com/api/v1/job", {
     next: { revalidate: 300 },
   });
 
