@@ -141,7 +141,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
       const jobId: string = row.getValue("id");
       const jobStatus: string = row.getValue("status");
 
-      const router = useRouter()
+      // const router = useRouter()
 
       const handleDeleteJob = async () => {
         try {
