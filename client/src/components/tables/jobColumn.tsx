@@ -145,7 +145,7 @@ export const jobColumn: ColumnDef<JobColumnType>[] = [
 
       const handleDeleteJob = async () => {
         try {
-          await axios.delete(`http://localhost:5000/api/v1/job/${jobId}`);
+          await axios.delete(`https://job-app-q299.onrender.com/api/v1/job/${jobId}`);
           toast.success("Job deleted successfully");
           window.location.reload();
         } catch (error) {

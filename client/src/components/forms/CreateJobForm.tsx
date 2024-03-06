@@ -95,7 +95,7 @@ export function CreateJobForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/job",
+        "https://job-app-q299.onrender.com/api/v1/job",
         values
       );
       toast.success("Job record saved successfully!");
